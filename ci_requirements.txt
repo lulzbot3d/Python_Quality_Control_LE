@@ -1,0 +1,10 @@
+flake8==4.0.1
+flake8-polyfill==1.0.2
+mypy==0.910
+pycodestyle==2.8.0
+pytest==6.2.5
+pytest-cov==3.0.0
+pytest-mock==1.10.4
+pytest-profiling==1.7.0
+pytest-raises==0.11
+vulture==2.3
