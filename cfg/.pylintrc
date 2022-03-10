@@ -1,0 +1,85 @@
+[MASTER]
+disable=
+    similarities,
+    C0114, # missing-module-docstring
+    C0115, # missing-class-docstring
+    C0116, # missing-function-docstring
+    W1203, # logging-fstring-interpolation
+# Disabled for future consideration
+    C0103, # invalid-name (snake_case)
+    C0200, # consider-using-enumerate
+    C0201, # consider-using-in
+    C0325, # superfluous-parens
+    C0411, # wrong-import-order
+    C0412, # ungrouped-imports
+    C0414, # useless-import-alias
+    C0415, # import-outside-toplevel
+    E0401, # import-error
+    E0602, # undefined-variable
+    E1101, # no-member
+    E1120, # no-value-for-parameter
+    E1126, # invalid-sequence-index
+    R0201, # no-self-use
+    R0902, # too-many-instance-attributes
+    R0903, # too-few-public-methods
+    R0904, # too-many-public-methods
+    R0913, # too-many-arguments
+    R0914, # too-many-locals
+    R0401, # cyclic-import
+    R1701, # consider-merging-isinstance
+    R1705, # no-else-return
+    R1710, # inconsistent-return-statements
+    R1714, # consider-using-in
+    R1716, # chained-comparison
+    R1719, # simplifiable-if-expression
+    R1720, # no-else-raise
+    R1721, # unnecessary-comprehension
+    R1722, # consider-using-sys-exit
+    R1723, # no-else-break
+    R1724, # no-else-continue
+    W0106, # expression-not-assigned
+    W0107, # unnecessary-pass
+    W0108, # unnecessary-lambda
+    W0120, # useless-else-on-loop
+    W0143, # comparison-with-callable
+    W0150, # lost-exception
+    W0201, # attribute-defined-outside-init
+    W0212, # protected-access
+    W0221, # arguments-differ
+    W0223, # abstract-method
+    W0235, # useless-super-delegation
+    W0511, # fixme (TODO etc)
+    W0611, # unused-import, because it also fails when used typing with double quotes.
+    W0621, # redefined-outer-name
+    W0622, # redefined-builtin
+    W0703, # broad-except
+    W0715, # raising-format-tuple
+    W1116, # isinstance-second-argument-not-valid-type
+    W1201, # logging-not-lazy
+    W1202, # logging-format-interpolation
+    W1510, # subprocess-run-check
+# Overlap with flake8
+    C0301, # line-too-long
+    W0702, # bare-except
+# Collision with Black
+    C0330, # Wrong hanging indentation before block (add 4 spaces)
+    C0326, # Bad whitespace
+
+# Maximum number of branch for function / method body.
+max-branches=18 # Set to current max. should be 12
+
+# Maximum number of return / yield for function / method body.
+max-returns=11 # Set to current max. should be 6
+
+# Maximum number of statements in function / method body.
+max-statements=138 # Set to current max. should be 50
+
+# Maximum number of boolean expressions in an if statement (see R0916).
+max-bool-expr=6 # Set to current max. should be 5
+
+# Maximum number of lines in a module.
+max-module-lines=1029 # Set to current max. should be 1000
+
+# Maximum number of parents for a class (see R0901).
+max-parents=16 # Set to current max. should be 7
+
