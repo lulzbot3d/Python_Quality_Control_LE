@@ -83,3 +83,5 @@ max-module-lines=1029 # Set to current max. should be 1000
 # Maximum number of parents for a class (see R0901).
 max-parents=16 # Set to current max. should be 7
 
+# Keep results between runs (y/n)
+persisten=no
