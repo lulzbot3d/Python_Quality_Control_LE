@@ -84,4 +84,4 @@ max-module-lines=1029 # Set to current max. should be 1000
 max-parents=16 # Set to current max. should be 7
 
 # Keep results between runs (y/n)
-persisten=no
+persistent=no
