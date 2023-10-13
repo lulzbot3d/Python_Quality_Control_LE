@@ -2,7 +2,7 @@
 
 set -eu
 
-PARENT_BRANCH=${PARENT_BRANCH:-master/s-line}
+PARENT_BRANCH=${PARENT_BRANCH:-main}
 CHANGED_BRANCH_FILES=$(git diff --name-only --diff-filter=d origin/"${PARENT_BRANCH}"...HEAD :^tests | grep -i .py$ | cat )
 
 if [ -z "${ONLY_CHECK_STAGED:=""}" ] ; then
