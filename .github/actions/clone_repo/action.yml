@@ -1,0 +1,50 @@
+name: Clone Repository
+description: Clone Requested repository and try to checkout the branch used to test the repository under test (github.ref_name)
+inputs:
+
+  token:
+    description: "The Personal Access Token to fetch the repository"
+    type: string
+    required: true
+
+  repository:
+    description: "The repository name. Must match the github name in Ultimaker organization"
+    type: string
+    required: true
+
+  default-branch:
+    description: "Branch to checkout if the project uses a different default branch from the one set in github"
+    type: string
+    required: false
+    default: "none"
+    
+runs:
+  using: "composite"
+  steps:
+    - name: Log Message
+      shell: bash
+      run: |
+        echo -e "\n\n###########  Fetching ${{ inputs.repository }} Repository ###########\n"
+        
+    - name: Clone ${{ inputs.repository }} on default branch
+      uses: actions/checkout@v4
+      with:
+        repository: Ultimaker/${{ inputs.repository }}
+        token: ${{ inputs.token }}
+        path: ${{ inputs.repository }}
+        fetch-depth: 0
+
+    - name: Trying to checkout ${{ inputs.repository }} on branch ${{ github.ref_name }}
+      shell: bash
+      run: |
+        cd ${{ inputs.repository }}
+        if git checkout ${{ github.ref_name }}; then
+          echo "Branch ${{ github.ref_name }} successfully checked-out"
+        else
+          echo "Branch ${{ github.ref_name }} not found, using default branch"
+          if [ "${{ inputs.default-branch }}" != "none" ]; then
+            git checkout ${{ inputs.default-branch }}
+          fi;
+        fi;
+        CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+        echo -e "\n\n###########  Done fetching ${{ inputs.repository }}. Checked out branch: ${CURRENT_BRANCH} ###########\n"

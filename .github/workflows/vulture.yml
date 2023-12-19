@@ -1,0 +1,31 @@
+on:
+  workflow_call:
+          
+jobs:
+  Vulture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.ULTIMAKER_CI_PAT }}
+          submodules: recursive
+
+      - name: Vulture
+        run: |
+          source ./docker_env/make_docker.sh ""
+          run_in_docker "./ci/run_vulture.sh"
+
+      - name: Dump GitHub context
+        if: ${{ always() }}
+        env:
+           GITHUB_CONTEXT: ${{ toJson(github) }}
+           JOB_CONTEXT: ${{ toJson(job) }}
+           STEPS_CONTEXT: ${{ toJson(steps) }}
+           RUNNER_CONTEXT: ${{ toJson(runner) }}
+        run: |
+          echo "${GITHUB_CONTEXT}"
+          echo "${JOB_CONTEXT}"
+          echo "${STEPS_CONTEXT}"
+          echo "${RUNNER_CONTEXT}"
+          
