@@ -2,7 +2,7 @@ on:
   workflow_call:
     inputs:
       PARENT_BRANCH:
-        description: "The master/main branch of the repository to compare files againt"
+        description: "The master/main branch of the repository to compare files against"
         type: string
         required: true
           
