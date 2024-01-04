@@ -1,0 +1,38 @@
+on:
+  workflow_call:
+    inputs:
+      PARENT_BRANCH:
+        description: "The master/main branch of the repository to compare files against"
+        type: string
+        required: true
+          
+jobs:
+  Flake8:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.ULTIMAKER_CI_PAT }}
+          submodules: recursive
+
+      - name: Flake8
+        run: |
+          export PARENT_BRANCH="${{ inputs.PARENT_BRANCH }}"
+          source ./docker_env/make_docker.sh ""
+          run_in_docker "./ci/run_flake8.sh"
+
+      - name: Dump GitHub context
+        if: ${{ always() }}
+        env:
+           GITHUB_CONTEXT: ${{ toJson(github) }}
+           JOB_CONTEXT: ${{ toJson(job) }}
+           STEPS_CONTEXT: ${{ toJson(steps) }}
+           RUNNER_CONTEXT: ${{ toJson(runner) }}
+        run: |
+          echo "${GITHUB_CONTEXT}"
+          echo "${JOB_CONTEXT}"
+          echo "${STEPS_CONTEXT}"
+          echo "${RUNNER_CONTEXT}"
+          

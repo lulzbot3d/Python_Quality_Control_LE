@@ -1,0 +1,45 @@
+on:
+  workflow_call:
+    inputs:
+      default-branch:
+        description: "Branch to checkout if the project uses a different default branch from the one set in github"
+        type: string
+        required: false
+        default: "none"        
+
+jobs:
+  PyTest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.ULTIMAKER_CI_PAT }}
+          submodules: recursive
+          path: repo_under_test
+
+      - name: Fetch Companion Repositories
+        uses: Ultimaker/python-quality-control/.github/actions/fetch_companion_repos@master
+        with:
+          token: ${{ secrets.ULTIMAKER_CI_PAT }}
+          default-branch: ${{ inputs.default-branch }}
+        
+      - name: PyTest
+        run: |
+          cd repo_under_test
+          source ./docker_env/make_docker.sh ""
+          run_in_docker "./ci/run_pytest.sh"
+
+      - name: Dump GitHub context
+        if: ${{ always() }}
+        env:
+           GITHUB_CONTEXT: ${{ toJson(github) }}
+           JOB_CONTEXT: ${{ toJson(job) }}
+           STEPS_CONTEXT: ${{ toJson(steps) }}
+           RUNNER_CONTEXT: ${{ toJson(runner) }}
+        run: |
+          echo "${GITHUB_CONTEXT}"
+          echo "${JOB_CONTEXT}"
+          echo "${STEPS_CONTEXT}"
+          echo "${RUNNER_CONTEXT}"
+          
