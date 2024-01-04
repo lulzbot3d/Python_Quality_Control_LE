@@ -16,49 +16,49 @@ runs:
   using: "composite"
   steps:
       - name: Clone dbus-interface-lib
-        uses: Ultimaker/python-quality-control/.github/actions/clone_repo@Github_Actions
+        uses: Ultimaker/python-quality-control/.github/actions/clone_repo@master
         with:
           token: ${{ inputs.token }}
           repository: dbus-interface-lib
           default-branch: ${{ inputs.default-branch }}
 
       - name: Clone marvin-service
-        uses: Ultimaker/python-quality-control/.github/actions/clone_repo@Github_Actions
+        uses: Ultimaker/python-quality-control/.github/actions/clone_repo@master
         with:
           token: ${{ inputs.token }}
           repository: marvin-service
           default-branch: ${{ inputs.default-branch }}
 
       - name: Clone libPalantir
-        uses: Ultimaker/python-quality-control/.github/actions/clone_repo@Github_Actions
+        uses: Ultimaker/python-quality-control/.github/actions/clone_repo@master
         with:
           token: ${{ inputs.token }}
           repository: libPalantir
           default-branch: ${{ inputs.default-branch }}
 
       - name: Clone libSmeagol
-        uses: Ultimaker/python-quality-control/.github/actions/clone_repo@Github_Actions
+        uses: Ultimaker/python-quality-control/.github/actions/clone_repo@master
         with:
           token: ${{ inputs.token }}
           repository: libSmeagol
           default-branch: ${{ inputs.default-branch }}
 
       - name: Clone libCharon
-        uses: Ultimaker/python-quality-control/.github/actions/clone_repo@Github_Actions
+        uses: Ultimaker/python-quality-control/.github/actions/clone_repo@master
         with:
           token: ${{ inputs.token }}
           repository: libCharon
           default-branch: ${{ inputs.default-branch }}
 
       - name: Clone libLogger
-        uses: Ultimaker/python-quality-control/.github/actions/clone_repo@Github_Actions
+        uses: Ultimaker/python-quality-control/.github/actions/clone_repo@master
         with:
           token: ${{ inputs.token }}
           repository: libLogger
           default-branch: ${{ inputs.default-branch }}
 
       - name: Clone ultiLib
-        uses: Ultimaker/python-quality-control/.github/actions/clone_repo@Github_Actions
+        uses: Ultimaker/python-quality-control/.github/actions/clone_repo@master
         with:
           token: ${{ inputs.token }}
           repository: ultiLib
