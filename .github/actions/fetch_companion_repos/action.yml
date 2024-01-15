@@ -63,4 +63,11 @@ runs:
           token: ${{ inputs.token }}
           repository: ultiLib
           default-branch: ${{ inputs.default-branch }}
+
+      - name: Clone mqttHandler
+        uses: Ultimaker/python-quality-control/.github/actions/clone_repo@master
+        with:
+          token: ${{ inputs.token }}
+          repository: mqttHandler
+          default-branch: ${{ inputs.default-branch }}
           
