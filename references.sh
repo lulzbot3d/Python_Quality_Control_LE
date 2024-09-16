@@ -1,5 +1,4 @@
 #!/bin/sh
-
 set -eu
 
 PARENT_BRANCH=${PARENT_BRANCH:-main}
@@ -14,6 +13,12 @@ else
 fi
 
 CHANGED_FILES=$(echo "${CHANGED_BRANCH_FILES}" "${CHANGED_LOCAL_FILES}" | tr ' ' '\n' | sort | uniq)
+
+# Remove excluded files from changed files
+if [ -f "excluded_files.txt" ]; then
+    EXCLUDED_FILES=$(cat "excluded_files.txt")
+    CHANGED_FILES=$(echo "${CHANGED_FILES}" | grep -vF "${EXCLUDED_FILES}")
+fi
 
 export PARENT_BRANCH
 export CHANGED_FILES
