@@ -3,6 +3,7 @@ set -eu
 
 PARENT_BRANCH=${PARENT_BRANCH:-main}
 CHANGED_BRANCH_FILES=$(git diff --name-only --diff-filter=d origin/"${PARENT_BRANCH}"...HEAD :^tests | grep -i .py$ | cat )
+EXCLUDE_FILE_NAME="linting_excluded_files.txt"
 
 if [ -z "${ONLY_CHECK_STAGED:=""}" ] ; then
     echo "Local + staged + branch changes"
@@ -15,8 +16,8 @@ fi
 CHANGED_FILES=$(echo "${CHANGED_BRANCH_FILES}" "${CHANGED_LOCAL_FILES}" | tr ' ' '\n' | sort | uniq)
 
 # Remove excluded files from changed files
-if [ -f "excluded_files.txt" ]; then
-    EXCLUDED_FILES=$(cat "excluded_files.txt")
+if [ -f "${EXCLUDE_FILE_NAME}" ]; then
+    EXCLUDED_FILES=$(cat "${EXCLUDE_FILE_NAME}")
     CHANGED_FILES=$(echo "${CHANGED_FILES}" | grep -vF "${EXCLUDED_FILES}")
 fi
 
