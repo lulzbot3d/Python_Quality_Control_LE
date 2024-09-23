@@ -24,3 +24,13 @@ Actions:
 - **clone_repo**: Clone a specific repository and try to check out the current working branch, otherwise checkout the default one (default can be specified using an input field. If not specified, it uses the repo default one).
 
 - **fetch_companion_repos**: Clone all “known” companion repos (currently: dbus-interface-lib, marvin-service, libPalantir, libSmeagol, libCharon, libLogger, ultiLib). This action basically calls clone_repo for all those repositories.
+
+
+Excluding files:
+
+Files can be excluded from the linting by individual repositories using a text file in the root of the repo with the name: linting_excluded_file.txt.
+The format for the file expected would be:
+```
+cfg/flake8.ini
+references.sh
+```
