@@ -14,14 +14,13 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.ULTIMAKER_CI_PAT }}
           submodules: recursive
           path: repo_under_test
 
       - name: Fetch Companion Repositories
-        uses: Ultimaker/python-quality-control/.github/actions/fetch_companion_repos@master
+        uses: lulzbot3d/Python_Quality_Control_LE/.github/actions/fetch_companion_repos@main
         with:
-          token: ${{ secrets.ULTIMAKER_CI_PAT }}
+          token: ${{ secrets.CURA_UNIT_TESTS_POST_PAT }}
           default-branch: ${{ inputs.default-branch }}
         
       - name: PyTest

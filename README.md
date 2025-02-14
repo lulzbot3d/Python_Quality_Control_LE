@@ -1,3 +1,5 @@
+# Python_Quality_Control_LE
+
 This directory contains scripts to perform different types of static code analysis:
 
 * `reference` is a support script, gathers all changed files to be analyzed by the different scripts.
@@ -15,22 +17,23 @@ This repository also implements Reusable Workflows and Actions for Github Action
 
 Reusable Workflows:
 
-- **Flake8**, **MyPy**, **PyCodeStyle**, **PyLint**: They all call the respective scripts inside a docker container and requires as `input` field the `Parent_Branch` to compare the filed against.
-- **PyTest**: Fetch the companion repositories and then run the `run_pytest.sh` inside a docker container. It takes as optional `input` a `default-branch` to checkout the companion repositories in case there is no branch with the same name as the
+* **Flake8**, **MyPy**, **PyCodeStyle**, **PyLint**: They all call the respective scripts inside a docker container and requires as `input` field the `Parent_Branch` to compare the filed against.
+* **PyTest**: Fetch the companion repositories and then run the `run_pytest.sh` inside a docker container. It takes as optional `input` a `default-branch` to checkout the companion repositories in case there is no branch with the same name as the
 caller branch. If not provided, it defaults to the repository default branch.
-- **Vulture**: Run the `run_vulture.sh` inside a docker container. It takes no `input`.
+* **Vulture**: Run the `run_vulture.sh` inside a docker container. It takes no `input`.
 
 Actions:
-- **clone_repo**: Clone a specific repository and try to check out the current working branch, otherwise checkout the default one (default can be specified using an input field. If not specified, it uses the repo default one).
 
-- **fetch_companion_repos**: Clone all “known” companion repos (currently: dbus-interface-lib, marvin-service, libPalantir, libSmeagol, libCharon, libLogger, ultiLib). This action basically calls clone_repo for all those repositories.
+* **clone_repo**: Clone a specific repository and try to check out the current working branch, otherwise checkout the default one (default can be specified using an input field. If not specified, it uses the repo default one).
 
+* **fetch_companion_repos**: Clone all “known” companion repos (currently: dbus-interface-lib, marvin-service, libPalantir, libSmeagol, libCharon, libLogger, ultiLib). This action basically calls clone_repo for all those repositories.
 
 Excluding files:
 
 Files can be excluded from the linting by individual repositories using a text file in the root of the repo with the name: linting_excluded_file.txt.
 The format for the file expected would be:
-```
+
+```filesystem
 cfg/flake8.ini
 references.sh
 ```

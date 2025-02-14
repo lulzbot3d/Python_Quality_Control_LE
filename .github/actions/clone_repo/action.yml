@@ -8,7 +8,7 @@ inputs:
     required: true
 
   repository:
-    description: "The repository name. Must match the github name in Ultimaker organization"
+    description: "The repository name. Must match the github name in lulzbot3d organization"
     type: string
     required: true
 
@@ -29,7 +29,7 @@ runs:
     - name: Clone ${{ inputs.repository }} on default branch
       uses: actions/checkout@v4
       with:
-        repository: Ultimaker/${{ inputs.repository }}
+        repository: lulzbot3d/${{ inputs.repository }}
         token: ${{ inputs.token }}
         path: ${{ inputs.repository }}
         fetch-depth: 0

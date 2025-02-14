@@ -14,7 +14,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.ULTIMAKER_CI_PAT }}
           submodules: recursive
 
       - name: PyCodeStyle

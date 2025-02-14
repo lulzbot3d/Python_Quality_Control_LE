@@ -1,0 +1,15 @@
+name: Update Fork
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: '0 13 * * 1-5'
+
+jobs:
+  update-fork:
+    uses: lulzbot3d/CuraLE_Workflows/.github/workflows/update-lulzbot-forks.yml@main
+    with:
+      repo: 'python-quality-control'
+      branch: 'master'
+    secrets: inherit
